@@ -9,6 +9,7 @@
 
 #include <opentxs/OTAPI.hpp>
 #include <opentxs/OTAPI_Exec.hpp>
+
 #include <opentxs/OTAsymmetricKey.hpp>
 
 #include <QVBoxLayout>
