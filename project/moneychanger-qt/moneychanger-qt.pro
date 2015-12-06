@@ -191,6 +191,8 @@ unix:{
     LIBS += -lxmlrpc
     LIBS += -lxmlrpc++
     LIBS += -lxmlrpc_client++
+    LIBS += -lgnutls
+    LIBS += -lopendht
 }
 
 
