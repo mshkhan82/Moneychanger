@@ -665,6 +665,13 @@ void Moneychanger::bootTray()
 {
     connect(this, SIGNAL(appendToLog(QString)), this, SLOT(mc_showlog_slot(QString)));
     // ----------------------------------------------------------------------------
+    if (nullptr == pDHT_)
+    {
+        pDHT_ = new dht::DhtRunner;
+        getDHT()->run(4223, dht::crypto::generateIdentity(), true);
+        getDHT()->bootstrap("127.0.0.1", "4222");
+    }
+    // ----------------------------------------------------------------------------
     SetupMainMenu();
     // ----------------------------------------------------------------------------
     //Show systray

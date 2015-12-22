@@ -20,6 +20,10 @@
 #include <QVariant>
 #include <QWidget>
 
+
+#include <opendht.h>
+
+
 class MTHome;
 class MTDetailEdit;
 class DlgLog;
@@ -151,8 +155,11 @@ public:
     QString get_notary_id_at(int a){return server_list_id ? server_list_id->at(a).toString() : "";}
     QString get_server_name_at(int a){return server_list_name ? server_list_name->at(a).toString() : "";}
     
-    
+    dht::DhtRunner * getDHT() { return pDHT_; }
+
 private:
+
+    dht::DhtRunner * pDHT_=nullptr;
 
     /** Namecoin interface used for the NameManager.  */
     NMC_Interface* nmc=nullptr;

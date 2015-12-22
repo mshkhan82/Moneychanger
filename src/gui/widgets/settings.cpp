@@ -13,6 +13,45 @@
 #include <QMessageBox>
 #include <QDebug>
 
+#include <opendht.h>
+
+
+// ----------------------------------------
+
+bool get_cb(const std::vector<std::shared_ptr<dht::Value>>& values)
+{
+    std::string theresult("It's happening!");
+
+    for (const auto & it: values)
+    {
+        auto & ptr = *it;
+
+        //theresult += ptr->
+    }
+
+    // theresult =
+
+    QString qstrValue(QString::fromStdString(theresult));
+
+    QMessageBox::information(NULL, "Moneychanger", qstrValue);
+}
+
+
+// ----------------------------------------
+void Settings::on_pushButton_clicked()
+{
+    const QString qstrKey = ui->lineEditDHT->text();
+
+    if (qstrKey.isEmpty())
+        return;
+
+    static const std::function<bool(const std::vector<std::shared_ptr<dht::Value>>& values)> get_cb_fp = &get_cb;
+
+    Moneychanger::It()->getDHT()->get(qstrKey.toStdString(), get_cb_fp);
+}
+
+
+
 
 void Settings::on_comboBoxLanguage_currentIndexChanged(int index)
 {
@@ -145,4 +184,5 @@ void Settings::on_pushButtonSave_clicked()
     // ----------------------------------------------
 //  hide();
 }
+
 

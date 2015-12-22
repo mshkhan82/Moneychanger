@@ -19,8 +19,6 @@
 #include <QDir>
 #include <QMessageBox>
 
-#include <opendht.h>
-
 void shutdown_app()
 {
 
@@ -45,23 +43,8 @@ public:
 
 // ----------------------------------------
 
-dht::DhtRunner* TheDHT;
-
-bool get_cb(const std::vector<std::shared_ptr<dht::Value>>& values)
-{
-    std::string theresult;
-    QMessageBox::information(NULL, "Moneychanger", QString::fromStdString(theresult));
-};
-
-const std::function<bool(const std::vector<std::shared_ptr<dht::Value>>& values)> get_cb_fp = &get_cb;
-
 int main(int argc, char *argv[])
 {
-    TheDHT = new dht::DhtRunner;
-    TheDHT->run(4223, dht::crypto::generateIdentity(), true);
-    TheDHT->bootstrap("127.0.0.1", "4222");
-    TheDHT->get("satoshi", get_cb_fp);
-
     // NB: you don't really have to do this if your library links ok
     // but I tested it and it works and gives a nice message, rw.
     //

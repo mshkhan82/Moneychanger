@@ -29,6 +29,7 @@ private slots:
     void on_pushButtonSave_clicked();
     void on_checkBoxExpertMode_toggled(bool checked);
     void on_comboBoxLanguage_currentIndexChanged(int index);
+    void on_pushButton_clicked();
 
 private:
     Ui::Settings *ui;
